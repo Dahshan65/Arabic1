@@ -4,189 +4,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دورة قواعد اللغة العربية | وائل دهشان</title>
+<meta name="theme-color" content="#123d2b">
+<title>دورة قواعد اللغة العربية - رواق الفن العربي</title>
 
 <style>
+:root {
+  --green: #123d2b;
+  --green2: #1d6041;
+  --gold: #dfbd65;
+  --cream: #fff9e9;
+  --text: #183326;
+  --whatsapp: #25d366;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  padding: 10px;
-  background: #f1f5f9;
-  color: #1e293b;
   font-family: Tahoma, Arial, sans-serif;
-  text-align: center;
-}
-
-.container {
-  max-width: 760px;
-  margin: auto;
-  padding: 20px;
-  background: white;
-  border-radius: 18px;
-  box-shadow: 0 4px 18px #00000012;
-}
-
-h1 {
-  color: #14532d;
-  font-size: 29px;
-  line-height: 1.7;
-}
-
-.description {
+  background: #f4f0e5;
+  color: var(--text);
   font-size: 19px;
-  line-height: 2;
-  margin-bottom: 25px;
-}
-
-.section-title {
-  color: #14532d;
-  font-size: 24px;
-  margin: 28px 0 16px;
-}
-
-.lesson-button {
-  display: block;
-  width: 100%;
-  padding: 21px 10px;
-  margin: 13px 0;
-  border: none;
-  border-radius: 13px;
-  background: #176b43;
-  color: white;
-  font-size: 21px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.lesson-button.locked {
-  background: #334155;
-}
-
-.lesson-button:active,
-.action-button:active {
-  transform: scale(.99);
-}
-
-#password-area {
-  display: none;
-  margin-top: 25px;
-  padding: 20px;
-  background: #fff7ed;
-  border: 1px solid #fed7aa;
-  border-radius: 14px;
-}
-
-#password-area h2 {
-  font-size: 23px;
-  color: #9a3412;
-}
-
-.info-text {
-  font-size: 18px;
-  line-height: 1.9;
-}
-
-#password {
-  display: block;
-  width: 100%;
-  padding: 17px;
-  margin: 15px 0;
-  border: 2px solid #cbd5e1;
-  border-radius: 10px;
-  font-size: 22px;
-  text-align: center;
-}
-
-.action-button {
-  display: block;
-  width: 100%;
-  padding: 19px 10px;
-  margin-top: 12px;
-  border: none;
-  border-radius: 12px;
-  color: white;
-  font-size: 21px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.unlock-button {
-  background: #2563eb;
-}
-
-.whatsapp-button {
-  display: block;
-  width: 100%;
-  padding: 19px 10px;
-  margin: 15px 0;
-  background: #25d366;
-  color: white;
-  text-decoration: none;
-  border-radius: 13px;
-  font-size: 21px;
-  font-weight: bold;
-}
-
-.whatsapp-button:hover {
-  background: #1db954;
-}
-
-#message {
-  font-size: 18px;
-  color: #b91c1c;
   line-height: 1.8;
 }
 
-#video-area {
-  display: none;
-  margin-top: 25px;
+header {
+  padding: 25px 14px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, #0b2c20, #1d6041);
+  border-bottom: 5px solid var(--gold);
 }
 
-#video-title {
-  font-size: 24px;
-  color: #14532d;
+header h1 {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(28px, 5vw, 42px);
 }
 
-.video-frame {
+header p {
+  margin: 5px 0;
+  font-size: clamp(17px, 3vw, 22px);
+}
+
+.container {
+  width: min(900px, calc(100% - 20px));
+  margin: 22px auto;
+}
+
+.panel {
+  padding: clamp(16px, 4vw, 28px);
+  margin-bottom: 22px;
+  background: white;
+  border: 1px solid #e1d7b8;
+  border-radius: 18px;
+  box-shadow: 0 5px 18px #0000000b;
+}
+
+h2 {
+  margin-top: 0;
+  color: var(--green);
+  font-size: clamp(24px, 4vw, 32px);
+}
+
+.subtitle {
+  color: #52655a;
+  font-size: 18px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 62px;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 12px;
+  color: white;
+  background: var(--green2);
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn-gold {
+  color: #30250c;
+  background: var(--gold);
+}
+
+.btn-secondary {
+  color: var(--green);
+  background: #e9f1eb;
+  border: 1px solid #bfd3c4;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.btn-row .btn {
+  flex: 1 1 220px;
+}
+
+.video-wrap {
   position: relative;
   width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #111827;
-  border-radius: 12px;
+  border-radius: 15px;
+  background: #111;
 }
 
-.video-frame iframe {
-  position: absolute;
-  inset: 0;
+.video-wrap iframe {
   width: 100%;
   height: 100%;
   border: 0;
 }
 
-/* رسوم الدورة في أسفل الصفحة */
-.price-section {
-  margin-top: 35px;
-  padding: 24px 15px;
-  background: #f0fdf4;
-  border: 2px solid #bbf7d0;
-  border-radius: 16px;
+.video-title {
+  color: var(--green);
+  font-size: 23px;
 }
 
-.price-section h2 {
+.lesson-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.lesson-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 68px;
+  padding: 14px;
+  border: 1px solid #e1d7b8;
+  border-radius: 12px;
+  background: #fbf8ef;
+  color: var(--text);
+  text-align: right;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.lesson-btn.active {
+  color: white;
+  background: var(--green2);
+  border-color: var(--gold);
+}
+
+.lesson-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #30250c;
+  font-weight: bold;
+}
+
+.free-label {
+  margin-right: auto;
   color: #166534;
+  font-size: 15px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.locked-label {
+  margin-right: auto;
+  color: #64748b;
+  font-size: 17px;
+}
+
+#passwordArea {
+  display: none;
+  margin-top: 25px;
+  padding: 20px;
+  background: #fff8e8;
+  border: 2px solid var(--gold);
+  border-radius: 15px;
+}
+
+#passwordArea h3 {
+  color: var(--green);
   font-size: 24px;
 }
 
-.price {
-  color: #15803d;
-  font-size: 34px;
+#coursePassword {
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  margin: 15px 0;
+  padding: 12px;
+  border: 2px solid #d7c99f;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 23px;
+}
+
+.password-message {
+  color: #b3261e;
   font-weight: bold;
-  margin: 18px 0;
+}
+
+.whatsapp-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 65px;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 13px;
+  background: var(--whatsapp);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.whatsapp-btn:hover {
+  background: #1db954;
+}
+
+.price-panel {
+  margin-top: 30px;
+  padding: 25px 16px;
+  text-align: center;
+  background: #f0fdf4;
+  border: 2px solid #b9ddc4;
+  border-radius: 17px;
+}
+
+.price-panel h2 {
+  color: #166534;
+}
+
+.price {
+  margin: 12px 0;
+  color: #15803d;
+  font-size: clamp(30px, 6vw, 40px);
+  font-weight: bold;
 }
 
 .price-description {
@@ -195,43 +266,70 @@ h1 {
 }
 
 footer {
-  margin-top: 25px;
-  padding-top: 18px;
-  border-top: 1px solid #e2e8f0;
-  font-size: 17px;
-  line-height: 2;
+  margin-top: 35px;
+  padding: 25px 14px;
+  text-align: center;
+  color: white;
+  background: var(--green);
+  border-top: 4px solid var(--gold);
+}
+
+footer p {
+  margin: 5px;
 }
 
 footer a {
-  color: #1877f2;
-  text-decoration: none;
+  color: var(--gold);
   font-weight: bold;
 }
 
+.small-note {
+  color: #64756a;
+  font-size: 15px;
+}
+
 @media (max-width: 480px) {
-  .container {
-    padding: 13px;
-  }
-
-  h1 {
-    font-size: 25px;
-  }
-
-  .description {
+  body {
     font-size: 18px;
   }
 
-  .lesson-button {
-    font-size: 19px;
-    padding: 21px 8px;
+  .container {
+    width: calc(100% - 14px);
+    margin: 12px auto;
   }
 
-  .whatsapp-button {
+  .panel {
+    padding: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    min-height: 62px;
     font-size: 19px;
   }
 
-  .price {
-    font-size: 30px;
+  .btn-row {
+    flex-direction: column;
+  }
+
+  .lesson-btn {
+    gap: 8px;
+    padding: 12px 8px;
+    font-size: 17px;
+  }
+
+  .lesson-number {
+    width: 38px;
+    height: 38px;
+  }
+
+  .free-label,
+  .locked-label {
+    font-size: 13px;
+  }
+
+  .whatsapp-btn {
+    font-size: 19px;
   }
 }
 </style>
@@ -239,263 +337,369 @@ footer a {
 
 <body>
 
-<div class="container">
+<header>
+  <h1>رِواق الفن العربي</h1>
+  <p>دورات تعليمية بإشراف الأستاذ وائل أحمد دهشان</p>
+  <p>دورة قواعد اللغة العربية</p>
+</header>
 
-  <h1>📚 دورة قواعد اللغة العربية</h1>
+<main class="container">
 
-  <p class="description">
-    أهلاً وسهلاً بكم في دورة قواعد اللغة العربية
-    مع الأستاذ وائل أحمد دهشان.
-    تعلّم القواعد العربية بأسلوب مبسّط من خلال
-    محاضرات مسجّلة يمكنك مشاهدتها من هاتفك أو حاسوبك.
-  </p>
+  <section class="panel">
 
-  <h2 class="section-title">🎓 المحاضرات التعليمية</h2>
+    <h2>📖 دورة قواعد اللغة العربية</h2>
 
-  <button class="lesson-button" onclick="openLesson(1)">
-    ▶ المحاضرة الأولى — مجانية
-  </button>
-
-  <button class="lesson-button locked" onclick="requestPassword(2)">
-    🔒 المحاضرة الثانية
-  </button>
-
-  <button class="lesson-button" onclick="openLesson(3)">
-    ▶ المحاضرة الثالثة — مجانية
-  </button>
-
-  <button class="lesson-button locked" onclick="requestPassword(4)">
-    🔒 المحاضرة الرابعة
-  </button>
-
-  <button class="lesson-button locked" onclick="requestPassword(5)">
-    🔒 المحاضرة الخامسة
-  </button>
-
-  <button class="lesson-button locked" onclick="requestPassword(6)">
-    🔒 المحاضرة السادسة
-  </button>
-
-  <button class="lesson-button locked" onclick="requestPassword(7)">
-    🔒 المحاضرة السابعة
-  </button>
-
-  <button class="lesson-button locked" onclick="requestPassword(8)">
-    🔒 المحاضرة الثامنة
-  </button>
-
-  <!-- رسالة الاشتراك وكلمة المرور -->
-
-  <div id="password-area">
-
-    <h2>🔐 هذه المحاضرة للمشتركين</h2>
-
-    <p class="info-text">
-      أدخل كلمة المرور لفتح جميع المحاضرات المقفلة.
-      إذا لم تكن مشتركًا، يمكنك التواصل معي عبر واتساب
-      للاستفسار عن التسجيل.
+    <p class="subtitle">
+      تعلّم قواعد اللغة العربية وأقسام الكلام والجمل
+      والقواعد الأساسية من خلال دروس تعليمية مسجّلة.
     </p>
 
-    <input
-      type="password"
-      id="password"
-      placeholder="أدخل كلمة المرور"
-      autocomplete="off"
-      aria-label="كلمة المرور">
+    <p>
+      يمكنك مشاهدة الدرس الأول والدرس الثالث مجانًا.
+      أما بقية الدروس فهي مخصصة للمشتركين.
+    </p>
 
-    <button class="action-button unlock-button" onclick="checkPassword()">
-      🔓 فتح المحاضرات
-    </button>
+    <div class="btn-row">
+      <a class="btn btn-gold"
+         href="https://www.youtube.com/watch?v=GbqZbAgqbes"
+         target="_blank"
+         rel="noopener noreferrer">
+        فتح الفيديو على يوتيوب
+      </a>
+    </div>
 
-    <p id="message" role="status"></p>
-
-    <a
-      class="whatsapp-button"
-      href="https://wa.me/962779221235?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20%D8%AF%D9%88%D8%B1%D8%A9%20%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9"
-      target="_blank"
-      rel="noopener noreferrer">
-      📱 اشترك الآن عبر واتساب
-    </a>
-
-  </div>
-
-  <!-- مشغل المحاضرات -->
-
-  <div id="video-area">
-
-    <h2 id="video-title"></h2>
-
-    <div class="video-frame">
+    <div class="video-wrap">
       <iframe
-        id="video-player"
-        src=""
-        title="محاضرة قواعد اللغة العربية"
+        id="player"
+        src="https://www.youtube-nocookie.com/embed/GbqZbAgqbes"
+        title="دورة قواعد اللغة العربية"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen>
       </iframe>
     </div>
 
-    <button class="action-button unlock-button" onclick="closeLesson()">
-      إغلاق المحاضرة والعودة للقائمة
-    </button>
+    <h3 id="videoTitle" class="video-title">
+      الدرس الأول: أقسام الكلام - الاسم وعلاماته
+    </h3>
 
-  </div>
+    <p class="subtitle">
+      اختر الدرس الذي تريد مشاهدته من القائمة التالية:
+    </p>
 
-  <!-- سعر الدورة في أسفل الصفحة -->
+    <div id="lessons" class="lesson-list"></div>
 
-  <div class="price-section">
+    <!-- كلمة المرور والاشتراك -->
+
+    <div id="passwordArea">
+
+      <h3>🔒 هذا الدرس مخصص للمشتركين</h3>
+
+      <p>
+        إذا كنت مشتركًا، أدخل كلمة المرور لفتح جميع
+        الدروس المقفلة.
+      </p>
+
+      <input
+        id="coursePassword"
+        type="password"
+        placeholder="أدخل كلمة المرور"
+        autocomplete="off"
+        aria-label="كلمة مرور الدورة">
+
+      <button class="btn"
+              type="button"
+              style="width:100%"
+              onclick="checkPassword()">
+        🔓 فتح الدروس
+      </button>
+
+      <p id="passwordMessage"
+         class="password-message"
+         aria-live="polite"></p>
+
+      <p>
+        ليس لديك كلمة المرور؟ تواصل معي عبر واتساب
+        للاستفسار عن الاشتراك.
+      </p>
+
+      <a class="whatsapp-btn"
+         href="https://wa.me/962779221235?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20%D8%AF%D9%88%D8%B1%D8%A9%20%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9"
+         target="_blank"
+         rel="noopener noreferrer">
+        📱 اشترك الآن عبر واتساب
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- السعر في أسفل الصفحة -->
+
+  <section class="price-panel">
 
     <h2>💰 رسوم الاشتراك في الدورة</h2>
 
     <div class="price">25 دينارًا أردنيًا</div>
 
     <p class="price-description">
-      رسوم الدورة كاملة.
-      يمكنك مشاهدة المحاضرتين الأولى والثالثة مجانًا.
-      للاشتراك والحصول على كلمة المرور،
-      تواصل معي مباشرةً عبر واتساب.
+      هذا السعر للدورة كاملة.
+      يمكنك تجربة الدروس المجانية أولًا،
+      ثم التواصل معي للاشتراك والحصول على كلمة المرور.
     </p>
 
-    <a
-      class="whatsapp-button"
-      href="https://wa.me/962779221235?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20%D8%AF%D9%88%D8%B1%D8%A9%20%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9"
-      target="_blank"
-      rel="noopener noreferrer">
+    <a class="whatsapp-btn"
+       href="https://wa.me/962779221235?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D9%81%D9%8A%20%D8%AF%D9%88%D8%B1%D8%A9%20%D9%82%D9%88%D8%A7%D8%B9%D8%AF%20%D8%A7%D9%84%D9%84%D8%BA%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9"
+       target="_blank"
+       rel="noopener noreferrer">
       📱 للتسجيل والاستفسار عبر واتساب
     </a>
 
-  </div>
+  </section>
 
-  <footer>
-    <p><strong>إعداد وإشراف: وائل أحمد دهشان</strong></p>
-    <p>رواق الفن العربي</p>
-    <p>
-      رقم التواصل:
-      <a href="https://wa.me/962779221235"
-         target="_blank"
-         rel="noopener noreferrer">
-        00962779221235
-      </a>
-    </p>
-  </footer>
+</main>
 
-</div>
+<footer>
+  <p><strong>رِواق الفن العربي</strong></p>
+  <p>إعداد وإشراف: الأستاذ وائل أحمد دهشان</p>
+
+  <p>
+    <a href="https://www.instagram.com/wael_dahshan65/"
+       target="_blank"
+       rel="noopener noreferrer">
+      حساب إنستغرام
+    </a>
+  </p>
+
+  <p>
+    واتساب:
+    <a href="https://wa.me/962779221235"
+       target="_blank"
+       rel="noopener noreferrer">
+      00962779221235
+    </a>
+  </p>
+
+  <p>نسأل الله لكم العلم النافع والتوفيق.</p>
+</footer>
 
 <script>
-/*
-  ضع روابط فيديوهاتك الحقيقية مكان الروابط التجريبية.
-  مثال:
-  https://www.youtube.com/watch?v=AbCd1234
-  يصبح:
-  https://www.youtube.com/embed/AbCd1234
-*/
 
-const videos = {
-  1: "https://www.youtube.com/embed/VIDEO_ID_1",
-  2: "https://www.youtube.com/embed/VIDEO_ID_2",
-  3: "https://www.youtube.com/embed/VIDEO_ID_3",
-  4: "https://www.youtube.com/embed/VIDEO_ID_4",
-  5: "https://www.youtube.com/embed/VIDEO_ID_5",
-  6: "https://www.youtube.com/embed/VIDEO_ID_6",
-  7: "https://www.youtube.com/embed/VIDEO_ID_7",
-  8: "https://www.youtube.com/embed/VIDEO_ID_8"
-};
+/* =====================================
+   روابط دروس قواعد اللغة العربية الأصلية
+===================================== */
 
+const videos = [
+  {
+    title: "الدرس الأول: أقسام الكلام - الاسم وعلاماته",
+    id: "GbqZbAgqbes"
+  },
+  {
+    title: "الدرس الثاني: أقسام الكلام - الفعل وأنواعه",
+    id: "O4XDwfm0KzU"
+  },
+  {
+    title: "الدرس الثالث: علامات الفعل والتمييز بين أقسامه",
+    id: "frzL_pSAVAA"
+  },
+  {
+    title: "الدرس الرابع: الجملة الاسمية والجملة الفعلية",
+    id: "SPSh70HtWdg"
+  },
+  {
+    title: "الدرس الخامس: المبتدأ والخبر وأنواع الخبر",
+    id: "m1UEBVB8aRA"
+  },
+  {
+    title: "الدرس السابع: أنواع الفاعل (الاسم الظاهر والضمير)",
+    id: "Pvxl5xHKoZk"
+  },
+  {
+    title: "الدرس الثامن: الفعل اللازم والفعل المتعدي",
+    id: "2pnh-vGeyFw"
+  },
+  {
+    title: "الدرس التاسع: كان وأخواتها وإنّ وأخواتها",
+    id: "mdYSCYA2lXk"
+  }
+];
+
+/* كلمة مرور الدروس المقفلة */
 const COURSE_PASSWORD = "1234";
 
-let selectedLesson = null;
+/* الدرس الأول والثالث مجانيان */
+const FREE_LESSONS = [0, 2];
+
 let unlocked = false;
+let selectedIndex = 0;
 
-function openLesson(number) {
+const player = document.getElementById("player");
+const title = document.getElementById("videoTitle");
+const list = document.getElementById("lessons");
+const passwordArea = document.getElementById("passwordArea");
+const passwordInput = document.getElementById("coursePassword");
+const passwordMessage = document.getElementById("passwordMessage");
 
-  if (number !== 1 && number !== 3 && !unlocked) {
-    requestPassword(number);
-    return;
+/* =====================================
+   تشغيل الدرس
+===================================== */
+
+function playLesson(index) {
+
+  const video = videos[index];
+
+  if (!video) return;
+
+  selectedIndex = index;
+
+  passwordArea.style.display = "none";
+  passwordMessage.textContent = "";
+  passwordInput.value = "";
+
+  player.src =
+    "https://www.youtube-nocookie.com/embed/" +
+    encodeURIComponent(video.id);
+
+  title.textContent = video.title;
+
+  list.querySelectorAll(".lesson-btn").forEach(function(button) {
+    button.classList.remove("active");
+  });
+
+  const selectedButton = list.children[index];
+
+  if (selectedButton) {
+    selectedButton.classList.add("active");
   }
 
-  const videoUrl = videos[number];
-
-  if (!videoUrl || videoUrl.includes("VIDEO_ID_")) {
-    alert(
-      "يرجى إضافة رابط الفيديو الحقيقي للمحاضرة رقم " +
-      number + " في الكود."
-    );
-    return;
-  }
-
-  document.getElementById("password-area").style.display = "none";
-  document.getElementById("video-area").style.display = "block";
-
-  document.getElementById("video-title").textContent =
-    "المحاضرة رقم " + number;
-
-  document.getElementById("video-player").src = videoUrl;
-
-  document.getElementById("video-area").scrollIntoView({
+  player.scrollIntoView({
     behavior: "smooth",
-    block: "start"
+    block: "center"
   });
 }
 
-function requestPassword(number) {
+/* =====================================
+   اختيار الدرس والتحقق من الاشتراك
+===================================== */
 
-  selectedLesson = number;
+function selectLesson(index) {
 
-  document.getElementById("video-area").style.display = "none";
-  document.getElementById("password-area").style.display = "block";
-  document.getElementById("password").value = "";
-  document.getElementById("message").textContent = "";
+  if (FREE_LESSONS.includes(index) || unlocked) {
+    playLesson(index);
+    return;
+  }
 
-  document.getElementById("password-area").scrollIntoView({
+  selectedIndex = index;
+
+  passwordArea.style.display = "block";
+  passwordMessage.textContent = "";
+  passwordInput.value = "";
+
+  passwordArea.scrollIntoView({
     behavior: "smooth",
-    block: "start"
+    block: "center"
   });
 
-  document.getElementById("password").focus();
+  setTimeout(function() {
+    passwordInput.focus();
+  }, 300);
 }
+
+/* =====================================
+   التحقق من كلمة المرور
+===================================== */
 
 function checkPassword() {
 
-  const enteredPassword =
-    document.getElementById("password").value;
-
-  if (enteredPassword === COURSE_PASSWORD) {
+  if (passwordInput.value === COURSE_PASSWORD) {
 
     unlocked = true;
 
-    document.getElementById("password-area").style.display = "none";
+    passwordArea.style.display = "none";
 
-    alert("تم فتح جميع المحاضرات المقفلة.");
+    alert("أحسنت! تم فتح جميع الدروس المقفلة.");
 
-    openLesson(selectedLesson);
+    renderLessons();
+
+    playLesson(selectedIndex);
 
   } else {
 
-    document.getElementById("message").textContent =
-      "كلمة المرور غير صحيحة. تواصل عبر واتساب للاستفسار عن الاشتراك.";
+    passwordMessage.textContent =
+      "كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.";
 
+    passwordInput.value = "";
+    passwordInput.focus();
   }
 }
 
-function closeLesson() {
+/* =====================================
+   إنشاء قائمة الدروس
+===================================== */
 
-  document.getElementById("video-player").src = "";
-  document.getElementById("video-area").style.display = "none";
+function renderLessons() {
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+  list.innerHTML = "";
+
+  videos.forEach(function(video, index) {
+
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className =
+      "lesson-btn" + (index === selectedIndex ? " active" : "");
+
+    const number = document.createElement("span");
+
+    number.className = "lesson-number";
+    number.textContent = index + 1;
+
+    const label = document.createElement("span");
+
+    label.textContent = video.title;
+
+    button.appendChild(number);
+    button.appendChild(label);
+
+    if (FREE_LESSONS.includes(index)) {
+
+      const freeLabel = document.createElement("span");
+
+      freeLabel.className = "free-label";
+      freeLabel.textContent = "مجاني";
+
+      button.appendChild(freeLabel);
+
+    } else if (!unlocked) {
+
+      const lockLabel = document.createElement("span");
+
+      lockLabel.className = "locked-label";
+      lockLabel.textContent = "🔒";
+
+      button.appendChild(lockLabel);
+    }
+
+    button.addEventListener("click", function() {
+      selectLesson(index);
+    });
+
+    list.appendChild(button);
   });
 }
 
-document.getElementById("password").addEventListener(
-  "keydown",
-  function(event) {
-    if (event.key === "Enter") {
-      checkPassword();
-    }
+/* السماح بإدخال كلمة المرور بزر Enter */
+passwordInput.addEventListener("keydown", function(event) {
+
+  if (event.key === "Enter") {
+    checkPassword();
   }
-);
+
+});
+
+/* تشغيل القائمة عند فتح الصفحة */
+renderLessons();
+
 </script>
 
 </body>
