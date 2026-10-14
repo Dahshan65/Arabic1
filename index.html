@@ -1,0 +1,644 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123d2b">
+
+<title>دورة قواعد اللغة العربية - رواق الفن العربي</title>
+
+<style>
+:root {
+  --green: #123d2b;
+  --green2: #1d6041;
+  --gold: #dfbd65;
+  --cream: #fff9e9;
+  --text: #183326;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: #f4f0e5;
+  color: var(--text);
+  font-size: 21px;
+  line-height: 1.9;
+}
+
+header {
+  padding: 28px 15px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, #0b2c20, #1d6041);
+  border-bottom: 6px solid var(--gold);
+}
+
+header h1 {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(30px, 5vw, 44px);
+}
+
+header p {
+  margin: 8px 0 0;
+  font-size: clamp(18px, 3vw, 23px);
+}
+
+.container {
+  width: min(1000px, calc(100% - 20px));
+  margin: 24px auto;
+}
+
+.panel {
+  padding: clamp(16px, 4vw, 28px);
+  margin-bottom: 22px;
+  background: white;
+  border: 1px solid #e1d7b8;
+  border-radius: 18px;
+  box-shadow: 0 5px 18px #0000000b;
+}
+
+h2 {
+  margin-top: 0;
+  color: var(--green);
+  font-size: clamp(25px, 4vw, 34px);
+}
+
+.subtitle {
+  color: #52655a;
+  font-size: 19px;
+}
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #111;
+  margin: 18px 0;
+}
+
+.video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-title {
+  color: var(--green);
+  font-size: clamp(22px, 4vw, 28px);
+}
+
+.lesson-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.lesson-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 78px;
+  padding: 16px;
+  border: 2px solid #e1d7b8;
+  border-radius: 15px;
+  background: #fbf8ef;
+  color: var(--text);
+  text-align: right;
+  font-family: inherit;
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.lesson-btn:hover {
+  border-color: var(--green2);
+  background: #f0f5ee;
+}
+
+.lesson-btn.active {
+  color: white;
+  background: var(--green2);
+  border-color: var(--gold);
+}
+
+.lesson-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #30250c;
+  font-size: 21px;
+}
+
+.lesson-info {
+  flex: 1;
+}
+
+.lesson-status {
+  display: block;
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 3px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 66px;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 13px;
+  color: white;
+  background: var(--green2);
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.92;
+}
+
+.btn-gold {
+  color: #30250c;
+  background: var(--gold);
+}
+
+.password-box {
+  padding: 22px;
+  margin: 20px 0;
+  background: #fff9e9;
+  border: 3px solid var(--gold);
+  border-radius: 16px;
+}
+
+.password-box h3 {
+  margin-top: 0;
+  color: var(--green);
+  font-size: 25px;
+}
+
+.password-box input {
+  display: block;
+  width: 100%;
+  min-height: 66px;
+  margin: 15px 0;
+  padding: 14px;
+  border: 2px solid #c9b77f;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 24px;
+  text-align: center;
+}
+
+.error {
+  color: #b3261e;
+  font-weight: bold;
+}
+
+.success {
+  color: #176a37;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.notice {
+  padding: 15px;
+  background: #e9f1eb;
+  border-radius: 12px;
+  color: var(--green);
+}
+
+footer {
+  margin-top: 35px;
+  padding: 25px 14px;
+  text-align: center;
+  color: white;
+  background: var(--green);
+  border-top: 5px solid var(--gold);
+}
+
+footer p {
+  margin: 5px;
+}
+
+footer a {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 19px;
+  }
+
+  .container {
+    width: calc(100% - 14px);
+    margin: 12px auto;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+
+  .lesson-btn {
+    min-height: 76px;
+    padding: 12px;
+  }
+
+  .lesson-number {
+    width: 44px;
+    height: 44px;
+  }
+
+  .btn {
+    min-height: 68px;
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>رِواق الفن العربي</h1>
+  <p>دورة قواعد اللغة العربية</p>
+  <p>بإشراف الأستاذ وائل أحمد دهشان</p>
+</header>
+
+<main class="container">
+
+  <section class="panel">
+    <h2>مرحبًا بك في دورة قواعد اللغة العربية</h2>
+
+    <p class="subtitle">
+      اختر الدرس الذي تريد مشاهدته من القائمة التالية.
+      الدرس الأول والثالث متاحان مباشرة، وبقية الدروس تحتاج
+      إلى كلمة المرور.
+    </p>
+
+    <div id="accessMessage" class="notice">
+      🔓 الدرس الأول والثالث متاحان دون كلمة مرور.
+    </div>
+  </section>
+
+  <section class="panel">
+
+    <h2>مشاهدة الدرس</h2>
+
+    <div class="video-wrap">
+      <iframe
+        id="videoPlayer"
+        src="https://www.youtube-nocookie.com/embed/GbqZbAgqbes"
+        title="دورة قواعد اللغة العربية"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <h3 id="videoTitle" class="video-title">
+      الدرس الأول: أقسام الكلام - الاسم وعلاماته
+    </h3>
+
+    <p id="videoDescription" class="subtitle">
+      هذا الدرس متاح للجميع دون كلمة مرور.
+    </p>
+
+    <div id="passwordBox" class="password-box hidden">
+
+      <h3>🔐 هذا الدرس محمي بكلمة مرور</h3>
+
+      <p>
+        أدخل كلمة المرور لفتح جميع الدروس المحمية.
+      </p>
+
+      <form id="passwordForm">
+
+        <input
+          type="password"
+          id="passwordInput"
+          placeholder="أدخل كلمة المرور"
+          autocomplete="off"
+          required
+        >
+
+        <button class="btn btn-gold" type="submit">
+          فتح جميع الدروس
+        </button>
+
+      </form>
+
+      <p id="passwordMessage" aria-live="polite"></p>
+
+    </div>
+
+  </section>
+
+  <section class="panel">
+
+    <h2>📚 قائمة الدروس</h2>
+
+    <p class="subtitle">
+      اضغط على الدرس المطلوب. علامة القفل تعني أن الدرس يحتاج
+      إلى كلمة المرور.
+    </p>
+
+    <div id="lessonList" class="lesson-list"></div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>رِواق الفن العربي</strong></p>
+  <p>إعداد وإشراف: الأستاذ وائل أحمد دهشان</p>
+
+  <p>
+    <a
+      href="https://www.instagram.com/wael_dahshan65/"
+      target="_blank"
+      rel="noopener noreferrer">
+      حساب إنستغرام
+    </a>
+  </p>
+
+  <p>نسأل الله لكم العلم النافع والتوفيق.</p>
+</footer>
+
+<script>
+/* =====================================
+   إعدادات الدورة
+===================================== */
+
+const PASSWORD = "1234";
+
+/*
+  الدرس الأول والثالث فقط متاحان دون كلمة مرور.
+  عند إدخال كلمة المرور الصحيحة تُفتح جميع الدروس.
+*/
+
+const lessons = [
+  {
+    title: "الدرس الأول: أقسام الكلام - الاسم وعلاماته",
+    id: "GbqZbAgqbes",
+    free: true
+  },
+  {
+    title: "الدرس الثاني: أقسام الكلام - الفعل وأنواعه",
+    id: "O4XDwfm0KzU",
+    free: false
+  },
+  {
+    title: "الدرس الثالث: علامات الفعل والتمييز بين أقسامه",
+    id: "frzL_pSAVAA",
+    free: true
+  },
+  {
+    title: "الدرس الرابع: الجملة الاسمية والجملة الفعلية",
+    id: "SPSh70HtWdg",
+    free: false
+  },
+  {
+    title: "الدرس الخامس: المبتدأ والخبر وأنواع الخبر",
+    id: "m1UEBVB8aRA",
+    free: false
+  },
+  {
+    title: "الدرس السابع: أنواع الفاعل (الاسم الظاهر والضمير)",
+    id: "Pvxl5xHKoZk",
+    free: false
+  },
+  {
+    title: "الدرس الثامن: الفعل اللازم والفعل المتعدي",
+    id: "2pnh-vGeyFw",
+    free: false
+  },
+  {
+    title: "الدرس التاسع: كان وأخواتها وإنّ وأخواتها",
+    id: "mdYSCYA2lXk",
+    free: false
+  }
+];
+
+let unlocked = false;
+let selectedLesson = 0;
+
+const videoPlayer = document.getElementById("videoPlayer");
+const videoTitle = document.getElementById("videoTitle");
+const videoDescription = document.getElementById("videoDescription");
+const lessonList = document.getElementById("lessonList");
+const passwordBox = document.getElementById("passwordBox");
+const passwordInput = document.getElementById("passwordInput");
+const passwordMessage = document.getElementById("passwordMessage");
+const accessMessage = document.getElementById("accessMessage");
+
+/* =====================================
+   فحص السماح بمشاهدة الدرس
+===================================== */
+
+function canWatch(lesson) {
+  return lesson.free || unlocked;
+}
+
+/* =====================================
+   تحديث حالة الرسالة أعلى الصفحة
+===================================== */
+
+function updateAccessMessage() {
+  if (unlocked) {
+    accessMessage.textContent =
+      "✅ تم فتح جميع الدروس المحمية بنجاح.";
+
+    accessMessage.className = "notice success";
+  } else {
+    accessMessage.textContent =
+      "🔓 الدرس الأول والثالث متاحان دون كلمة مرور. بقية الدروس محمية.";
+
+    accessMessage.className = "notice";
+  }
+}
+
+/* =====================================
+   عرض قائمة الدروس
+===================================== */
+
+function renderLessons() {
+  lessonList.innerHTML = "";
+
+  lessons.forEach(function(lesson, index) {
+
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className =
+      "lesson-btn" + (index === selectedLesson ? " active" : "");
+
+    const number = document.createElement("span");
+    number.className = "lesson-number";
+    number.textContent = index + 1;
+
+    const info = document.createElement("span");
+    info.className = "lesson-info";
+    info.textContent = lesson.title;
+
+    const status = document.createElement("span");
+    status.className = "lesson-status";
+
+    if (lesson.free) {
+      status.textContent = "🔓 متاح دون كلمة مرور";
+    } else if (unlocked) {
+      status.textContent = "✅ مفتوح";
+    } else {
+      status.textContent = "🔒 يحتاج إلى كلمة مرور";
+    }
+
+    info.appendChild(document.createElement("br"));
+    info.appendChild(status);
+
+    button.appendChild(number);
+    button.appendChild(info);
+
+    button.addEventListener("click", function() {
+      selectLesson(index);
+    });
+
+    lessonList.appendChild(button);
+  });
+}
+
+/* =====================================
+   اختيار درس
+===================================== */
+
+function selectLesson(index) {
+  const lesson = lessons[index];
+
+  selectedLesson = index;
+
+  if (!canWatch(lesson)) {
+
+    /*
+      لا يتم تحميل فيديو الدرس المحمي قبل إدخال
+      كلمة المرور الصحيحة.
+    */
+
+    videoPlayer.src = "about:blank";
+    videoTitle.textContent = lesson.title;
+
+    videoDescription.textContent =
+      "هذا الدرس محمي. أدخل كلمة المرور لفتح جميع الدروس.";
+
+    passwordBox.classList.remove("hidden");
+    passwordMessage.textContent = "";
+    passwordMessage.className = "";
+
+    passwordInput.value = "";
+
+    renderLessons();
+
+    passwordBox.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+    passwordInput.focus();
+
+    return;
+  }
+
+  passwordBox.classList.add("hidden");
+
+  videoPlayer.src =
+    "https://www.youtube-nocookie.com/embed/" +
+    encodeURIComponent(lesson.id);
+
+  videoTitle.textContent = lesson.title;
+
+  videoDescription.textContent = lesson.free
+    ? "هذا الدرس متاح دون كلمة مرور."
+    : "تم فتح الدرس بعد إدخال كلمة المرور.";
+
+  renderLessons();
+
+  videoPlayer.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+/* =====================================
+   التحقق من كلمة المرور
+===================================== */
+
+document.getElementById("passwordForm")
+  .addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    if (passwordInput.value === PASSWORD) {
+
+      unlocked = true;
+
+      passwordBox.classList.add("hidden");
+
+      passwordMessage.textContent = "";
+
+      updateAccessMessage();
+      renderLessons();
+
+      /*
+        بعد نجاح كلمة المرور يتم فتح الدرس
+        الذي اختاره المتعلم.
+      */
+
+      selectLesson(selectedLesson);
+
+    } else {
+
+      passwordMessage.textContent =
+        "❌ كلمة المرور غير صحيحة. حاول مرة أخرى.";
+
+      passwordMessage.className = "error";
+
+      passwordInput.value = "";
+      passwordInput.focus();
+    }
+  });
+
+/* =====================================
+   بدء الدورة بالدرس الأول
+===================================== */
+
+updateAccessMessage();
+renderLessons();
+selectLesson(0);
+
+</script>
+
+</body>
+</html>
+```
