@@ -3,139 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#123d2b">
+<meta name="theme-color" content="#0d3324">
 <title>دورة قواعد اللغة العربية - رواق الفن العربي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --green: #123d2b;
+  --green: #0d3324;
   --green2: #1d6041;
-  --gold: #dfbd65;
-  --cream: #fff9e9;
-  --text: #183326;
+  --green3: #e8f1ea;
+  --gold: #d9b45a;
+  --gold2: #f1dca0;
+  --cream: #faf6ea;
+  --text: #16301f;
+  --muted: #5b6f62;
   --whatsapp: #25d366;
+  --shadow: 0 10px 30px rgba(13, 51, 36, .10);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: Tahoma, Arial, sans-serif;
-  background: #f4f0e5;
+  font-family: "Cairo", Tahoma, Arial, sans-serif;
+  background: var(--cream);
   color: var(--text);
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1.8;
 }
 
+/* ---------- الواجهة العلوية ---------- */
 header {
-  padding: 25px 14px;
+  position: relative;
+  overflow: hidden;
+  padding: 48px 16px 80px;
   text-align: center;
-  color: white;
-  background: linear-gradient(135deg, #0b2c20, #1d6041);
-  border-bottom: 5px solid var(--gold);
+  color: #fff;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(217,180,90,.18) 0, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(217,180,90,.14) 0, transparent 40%),
+    linear-gradient(135deg, #082219, #1d6041);
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .07;
+  background-image:
+    linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%),
+    linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%);
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
+}
+
+header > * { position: relative; }
+
+.badge {
+  display: inline-block;
+  padding: 4px 18px;
+  margin-bottom: 14px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--gold2);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .5px;
 }
 
 header h1 {
   margin: 0;
   color: var(--gold);
-  font-size: clamp(28px, 5vw, 42px);
+  font-size: clamp(34px, 6vw, 56px);
+  font-weight: 800;
+  line-height: 1.4;
 }
 
 header p {
-  margin: 5px 0;
-  font-size: clamp(17px, 3vw, 22px);
+  margin: 4px 0;
+  font-size: clamp(16px, 2.6vw, 21px);
+  color: #e9f2ec;
 }
 
+.header-line {
+  width: 90px;
+  height: 4px;
+  margin: 18px auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ---------- الحاوية ---------- */
 .container {
-  width: min(900px, calc(100% - 20px));
-  margin: 22px auto;
+  width: min(960px, calc(100% - 24px));
+  margin: -48px auto 30px;
+  position: relative;
 }
 
 .panel {
-  padding: clamp(16px, 4vw, 28px);
-  margin-bottom: 22px;
-  background: white;
-  border: 1px solid #e1d7b8;
-  border-radius: 18px;
-  box-shadow: 0 5px 18px #0000000b;
+  padding: clamp(18px, 4vw, 34px);
+  margin-bottom: 24px;
+  background: #fff;
+  border: 1px solid #ece3c6;
+  border-radius: 22px;
+  box-shadow: var(--shadow);
 }
 
 h2 {
-  margin-top: 0;
+  margin: 0 0 8px;
   color: var(--green);
   font-size: clamp(24px, 4vw, 32px);
+  font-weight: 800;
 }
 
-.subtitle {
-  color: #52655a;
-  font-size: 18px;
+.subtitle { color: var(--muted); font-size: 17px; margin: 6px 0 14px; }
+
+/* ---------- شريط الإحصاءات والعداد ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 18px 0 22px;
 }
 
+.stat {
+  padding: 14px 8px;
+  text-align: center;
+  border-radius: 16px;
+  background: var(--green3);
+  border: 1px solid #cfe0d3;
+}
+
+.stat b {
+  display: block;
+  color: var(--green2);
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.stat span { color: var(--muted); font-size: 15px; font-weight: 600; }
+
+.stat.visitors { background: #fff8e3; border-color: #ecd9a2; }
+.stat.visitors b { color: #9a7510; }
+
+/* ---------- الأزرار ---------- */
 .btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-height: 62px;
-  padding: 14px 20px;
+  gap: 8px;
+  min-height: 56px;
+  padding: 12px 22px;
   border: 0;
-  border-radius: 12px;
-  color: white;
+  border-radius: 14px;
+  color: #fff;
   background: var(--green2);
   text-align: center;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 20px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 19px;
   cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
 }
 
-.btn-gold {
-  color: #30250c;
-  background: var(--gold);
-}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.15); }
 
-.btn-secondary {
-  color: var(--green);
-  background: #e9f1eb;
-  border: 1px solid #bfd3c4;
-}
+.btn-gold { color: #3a2c08; background: linear-gradient(135deg, #e8c870, #d9b45a); }
 
-.btn-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 16px 0;
-}
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 14px 0; }
+.btn-row .btn { flex: 1 1 220px; }
 
-.btn-row .btn {
-  flex: 1 1 220px;
-}
-
+/* ---------- المشغل ---------- */
 .video-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 15px;
+  border-radius: 18px;
   background: #111;
+  border: 3px solid var(--gold);
+  box-shadow: var(--shadow);
 }
 
-.video-wrap iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
+.video-wrap iframe { width: 100%; height: 100%; border: 0; }
 
 .video-title {
+  margin: 18px 0 4px;
+  padding-right: 14px;
+  border-right: 5px solid var(--gold);
   color: var(--green);
   font-size: 23px;
+  font-weight: 700;
 }
 
+/* ---------- قائمة الدروس ---------- */
 .lesson-list {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  margin-top: 15px;
+  margin-top: 14px;
 }
 
 .lesson-btn {
@@ -143,20 +215,26 @@ h2 {
   align-items: center;
   gap: 12px;
   width: 100%;
-  min-height: 68px;
-  padding: 14px;
-  border: 1px solid #e1d7b8;
-  border-radius: 12px;
-  background: #fbf8ef;
+  min-height: 74px;
+  padding: 12px 14px;
+  border: 1px solid #e6dcbc;
+  border-radius: 16px;
+  background: #fdfbf4;
   color: var(--text);
   text-align: right;
-  font-size: 19px;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.6;
   cursor: pointer;
+  transition: transform .15s, box-shadow .15s, background .15s;
 }
 
+.lesson-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
 .lesson-btn.active {
-  color: white;
-  background: var(--green2);
+  color: #fff;
+  background: linear-gradient(135deg, var(--green), var(--green2));
   border-color: var(--gold);
 }
 
@@ -165,171 +243,121 @@ h2 {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 43px;
-  height: 43px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: var(--gold);
-  color: #30250c;
-  font-weight: bold;
+  color: #3a2c08;
+  font-weight: 800;
 }
 
 .free-label {
   margin-right: auto;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #dcfce7;
   color: #166534;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 13px;
+  font-weight: 700;
   white-space: nowrap;
 }
 
-.locked-label {
-  margin-right: auto;
-  color: #64748b;
-  font-size: 17px;
-}
+.locked-label { margin-right: auto; color: #8a97a3; font-size: 17px; }
 
+/* ---------- كلمة المرور ---------- */
 #passwordArea {
   display: none;
-  margin-top: 25px;
-  padding: 20px;
-  background: #fff8e8;
+  margin-top: 24px;
+  padding: 22px;
+  background: #fff8e6;
   border: 2px solid var(--gold);
-  border-radius: 15px;
+  border-radius: 18px;
 }
 
-#passwordArea h3 {
-  color: var(--green);
-  font-size: 24px;
-}
+#passwordArea h3 { margin: 0 0 6px; color: var(--green); font-size: 24px; }
 
 #coursePassword {
   display: block;
   width: 100%;
-  min-height: 60px;
-  margin: 15px 0;
-  padding: 12px;
+  min-height: 58px;
+  margin: 14px 0;
+  padding: 10px;
   border: 2px solid #d7c99f;
-  border-radius: 12px;
+  border-radius: 14px;
   text-align: center;
-  font-size: 23px;
+  font-family: inherit;
+  font-size: 22px;
 }
 
-.password-message {
-  color: #b3261e;
-  font-weight: bold;
-}
+#coursePassword:focus { outline: 3px solid rgba(217,180,90,.5); }
+
+.password-message { color: #b3261e; font-weight: 700; }
 
 .whatsapp-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 65px;
-  margin: 15px 0;
-  padding: 15px;
-  border-radius: 13px;
+  min-height: 62px;
+  margin: 14px 0 4px;
+  padding: 14px;
+  border-radius: 14px;
   background: var(--whatsapp);
-  color: white;
+  color: #fff;
   text-align: center;
   text-decoration: none;
-  font-size: 21px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 800;
+  transition: transform .15s, background .15s;
 }
 
-.whatsapp-btn:hover {
-  background: #1db954;
-}
+.whatsapp-btn:hover { background: #1db954; transform: translateY(-2px); }
 
+/* ---------- السعر ---------- */
 .price-panel {
-  margin-top: 30px;
-  padding: 25px 16px;
+  padding: 30px 18px;
   text-align: center;
-  background: #f0fdf4;
-  border: 2px solid #b9ddc4;
-  border-radius: 17px;
+  color: #fff;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #082219, #1d6041);
+  border: 2px solid var(--gold);
+  box-shadow: var(--shadow);
 }
 
-.price-panel h2 {
-  color: #166534;
-}
+.price-panel h2 { color: var(--gold); }
 
 .price {
-  margin: 12px 0;
-  color: #15803d;
-  font-size: clamp(30px, 6vw, 40px);
-  font-weight: bold;
+  margin: 8px 0;
+  color: #fff;
+  font-size: clamp(34px, 7vw, 48px);
+  font-weight: 800;
 }
 
-.price-description {
-  font-size: 18px;
-  line-height: 1.9;
-}
+.price-description { max-width: 620px; margin: 0 auto; color: #e3efe7; font-size: 17px; }
 
+/* ---------- التذييل ---------- */
 footer {
-  margin-top: 35px;
-  padding: 25px 14px;
+  margin-top: 30px;
+  padding: 28px 14px;
   text-align: center;
-  color: white;
+  color: #fff;
   background: var(--green);
   border-top: 4px solid var(--gold);
 }
 
-footer p {
-  margin: 5px;
-}
+footer p { margin: 5px; }
+footer a { color: var(--gold); font-weight: 700; }
 
-footer a {
-  color: var(--gold);
-  font-weight: bold;
-}
-
-.small-note {
-  color: #64756a;
-  font-size: 15px;
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 18px;
-  }
-
-  .container {
-    width: calc(100% - 14px);
-    margin: 12px auto;
-  }
-
-  .panel {
-    padding: 15px;
-  }
-
-  .btn {
-    width: 100%;
-    min-height: 62px;
-    font-size: 19px;
-  }
-
-  .btn-row {
-    flex-direction: column;
-  }
-
-  .lesson-btn {
-    gap: 8px;
-    padding: 12px 8px;
-    font-size: 17px;
-  }
-
-  .lesson-number {
-    width: 38px;
-    height: 38px;
-  }
-
-  .free-label,
-  .locked-label {
-    font-size: 13px;
-  }
-
-  .whatsapp-btn {
-    font-size: 19px;
-  }
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  header { padding: 36px 12px 70px; }
+  .container { width: calc(100% - 14px); }
+  .panel { padding: 16px; }
+  .lesson-list { grid-template-columns: 1fr; }
+  .stats { gap: 8px; }
+  .stat span { font-size: 13px; }
+  .btn { width: 100%; }
+  .btn-row { flex-direction: column; }
 }
 </style>
 </head>
@@ -337,9 +365,11 @@ footer a {
 <body>
 
 <header>
+  <div class="badge">منصّة تعليمية</div>
   <h1>رِواق الفن العربي</h1>
   <p>دورات تعليمية بإشراف الأستاذ وائل أحمد دهشان</p>
   <p>دورة قواعد اللغة العربية</p>
+  <div class="header-line"></div>
 </header>
 
 <main class="container">
@@ -353,8 +383,15 @@ footer a {
       والقواعد الأساسية من خلال دروس تعليمية مسجّلة.
     </p>
 
+    <!-- الإحصاءات وعداد الزوار -->
+    <div class="stats">
+      <div class="stat"><b>14</b><span>درسًا مسجّلًا</span></div>
+      <div class="stat"><b>3</b><span>دروس مجانية</span></div>
+      <div class="stat visitors"><b id="visitorCount">…</b><span>👁 عدد الزوار</span></div>
+    </div>
+
     <p>
-      يمكنك مشاهدة الدرس الأول والدرس الثالث مجانًا.
+      يمكنك مشاهدة الدرس الأول والثاني والثالث مجانًا.
       أما بقية الدروس فهي مخصصة للمشتركين.
     </p>
 
@@ -550,8 +587,8 @@ const videos = [
 /* كلمة مرور الدروس المقفلة */
 const COURSE_PASSWORD = "1234";
 
-/* الدرس الأول والثالث مجانيان */
-const FREE_LESSONS = [0, 2];
+/* الدروس الأول والثاني والثالث مجانية */
+const FREE_LESSONS = [0, 1, 2];
 
 let unlocked = false;
 let selectedIndex = 0;
@@ -720,8 +757,52 @@ passwordInput.addEventListener("keydown", function(event) {
 
 });
 
-/* تشغيل القائمة عند فتح الصفحة */
+/* =====================================
+   عدّاد الزوار
+   - يزيد العدّاد مرة واحدة فقط لكل متصفح
+   - يعتمد على خدمة عدّاد مجانية خارجية
+===================================== */
+
+const COUNTER_BASE =
+  "https://api.counterapi.dev/v1/rewaq-arabic-art/grammar-course";
+
+async function loadVisitorCount() {
+
+  const counterEl = document.getElementById("visitorCount");
+  let firstVisit = true;
+
+  try {
+    firstVisit = !localStorage.getItem("rewaq_visited");
+  } catch (e) {}
+
+  try {
+
+    let response = await fetch(
+      COUNTER_BASE + (firstVisit ? "/up" : "/"),
+      { cache: "no-store" }
+    );
+
+    if (!response.ok && !firstVisit) {
+      response = await fetch(COUNTER_BASE + "/up", { cache: "no-store" });
+    }
+
+    const data = await response.json();
+
+    counterEl.textContent = Number(data.count).toLocaleString("ar-EG");
+
+    if (firstVisit) {
+      try { localStorage.setItem("rewaq_visited", "1"); } catch (e) {}
+    }
+
+  } catch (error) {
+
+    counterEl.textContent = "—";
+  }
+}
+
+/* تشغيل القائمة والعدّاد عند فتح الصفحة */
 renderLessons();
+loadVisitorCount();
 
 </script>
 
