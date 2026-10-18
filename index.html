@@ -260,6 +260,30 @@ passwordInput.addEventListener("keydown", function (e) {
    - يزيد العدّاد مرة واحدة فقط لكل متصفح */
 const COUNTER_URL = "https://script.google.com/macros/s/AKfycbxTh0Wt_ZOmiX6vuaCJiSUs0q1KLlfGsBqnX8U1l33AnuYiuWxxQGpJXFtm9cL8TVndxQ/exec";
 
+/* تحميل الرد كسكربت (JSONP) لتجاوز مشكلة CORS */
+function jsonp(url, timeoutMs) {
+  return new Promise(function (resolve, reject) {
+    const cbName = "__rewaqCb" + Date.now();
+    const script = document.createElement("script");
+    function cleanup() {
+      clearTimeout(timer);
+      delete window[cbName];
+      script.remove();
+    }
+    const timer = setTimeout(function () {
+      cleanup();
+      reject(new Error("انتهت المهلة"));
+    }, timeoutMs);
+    window[cbName] = function (data) { cleanup(); resolve(data); };
+    script.onerror = function () {
+      cleanup();
+      reject(new Error("تعذّر تحميل رد العدّاد"));
+    };
+    script.src = url + (url.indexOf("?") > -1 ? "&" : "?") + "callback=" + cbName;
+    document.head.appendChild(script);
+  });
+}
+
 async function loadVisitorCount() {
   const counterEl = document.getElementById("visitorCount");
 
@@ -273,13 +297,8 @@ async function loadVisitorCount() {
   try { firstVisit = !localStorage.getItem("rewaq_visited"); } catch (e) {}
 
   try {
-    const response = await fetch(
-      COUNTER_URL + "?hit=" + (firstVisit ? "1" : "0"),
-      { cache: "no-store" }
-    );
-    if (!response.ok) throw new Error("HTTP " + response.status);
-    const data = await response.json();
-    const n = Number(data.count);
+    const data = await jsonp(COUNTER_URL + "?hit=" + (firstVisit ? "1" : "0"), 10000);
+    const n = Number(data && data.count);
     if (!Number.isFinite(n)) throw new Error("رد غير متوقع");
     counterEl.textContent = n.toLocaleString("ar-EG");
     if (firstVisit) {
