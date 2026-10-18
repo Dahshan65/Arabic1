@@ -254,58 +254,37 @@ passwordInput.addEventListener("keydown", function (e) {
   if (e.key === "Enter") checkPassword();
 });
 
-/* ===== عدّاد الزوار (CounterAPI v1) =====
-   - يزيد مرة واحدة فقط لكل متصفح
-   - يقرأ الرقم مهما كان اسم الحقل في الرد
-   - افتح F12 > Console لرؤية رد الخدمة عند وجود مشكلة */
-const COUNTER_BASE = "https://api.counterapi.dev/v1/rewaq-arabic-art/grammar-course";
-
-function extractCount(data) {
-  const candidates = [
-    data && data.count,
-    data && data.up_count,
-    data && data.data && data.data.up_count,
-    data && data.data && data.data.count
-  ];
-  for (const v of candidates) {
-    if (v === undefined || v === null) continue;
-    const n = Number(v);
-    if (Number.isFinite(n)) return n;
-  }
-  return null;
-}
-
-async function callCounter(path) {
-  const controller = new AbortController();
-  const timer = setTimeout(function () { controller.abort(); }, 8000);
-  try {
-    const response = await fetch(COUNTER_BASE + path, { cache: "no-store", signal: controller.signal });
-    if (!response.ok) throw new Error("HTTP " + response.status);
-    const data = await response.json();
-    console.log("رد العدّاد:", data);
-    const n = extractCount(data);
-    if (n === null) throw new Error("لم يتم العثور على الرقم في الرد");
-    return n;
-  } finally {
-    clearTimeout(timer);
-  }
-}
+/* ===== عدّاد الزوار (Google Apps Script) =====
+   1) انشر سكربت Apps Script كتطبيق ويب (Anyone)
+   2) الصق رابط /exec بدل النص أدناه
+   - يزيد العدّاد مرة واحدة فقط لكل متصفح */
+const COUNTER_URL = "ضع_رابط_exec_هنا";
 
 async function loadVisitorCount() {
   const counterEl = document.getElementById("visitorCount");
+
+  if (COUNTER_URL.indexOf("https://script.google.com/") !== 0) {
+    console.warn("لم يتم ضبط COUNTER_URL بعد.");
+    counterEl.textContent = "—";
+    return;
+  }
+
   let firstVisit = true;
   try { firstVisit = !localStorage.getItem("rewaq_visited"); } catch (e) {}
 
   try {
-    let count;
+    const response = await fetch(
+      COUNTER_URL + "?hit=" + (firstVisit ? "1" : "0"),
+      { cache: "no-store" }
+    );
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const data = await response.json();
+    const n = Number(data.count);
+    if (!Number.isFinite(n)) throw new Error("رد غير متوقع");
+    counterEl.textContent = n.toLocaleString("ar-EG");
     if (firstVisit) {
-      count = await callCounter("/up");
       try { localStorage.setItem("rewaq_visited", "1"); } catch (e) {}
-    } else {
-      try { count = await callCounter(""); }
-      catch (e) { count = await callCounter("/up"); }
     }
-    counterEl.textContent = count.toLocaleString("ar-EG");
   } catch (error) {
     console.error("خطأ في عدّاد الزوار:", error);
     counterEl.textContent = "—";
