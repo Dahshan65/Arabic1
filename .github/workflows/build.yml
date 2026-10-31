@@ -20,7 +20,7 @@ jobs:
 
       - name: Create Android project
         run: |
-          APP_URL="https://dahshan65.github.io/Rewaq_Alkhatt/"
+          APP_URL="https://dahshan65.github.io/Arabic1/"
           mkdir -p android-build/app/src/main/java/com/dahshan/rewaq
           mkdir -p android-build/app/src/main/res/drawable-nodpi
           cd android-build
