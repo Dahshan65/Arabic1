@@ -153,42 +153,39 @@ jobs:
 
       - name: Create app icon
         run: |
-          pip install pillow arabic-reshaper python-bidi
+          pip install pillow
           curl -L -f -o Amiri-Bold.ttf https://github.com/google/fonts/raw/main/ofl/amiri/Amiri-Bold.ttf
           ls -l Amiri-Bold.ttf
           cat > make_icon.py <<'PYEOF'
           from PIL import Image, ImageDraw, ImageFont
-          import arabic_reshaper
-          from bidi.algorithm import get_display
 
           S = 512
           FONT = "Amiri-Bold.ttf"
           OUT = "android-build/app/src/main/res/drawable-nodpi/ic_launcher.png"
+          LETTER = "\u0636"
 
           img = Image.new("RGB", (S, S), "#1d6041")
           d = ImageDraw.Draw(img)
           d.rounded_rectangle([24, 24, S - 25, S - 25], radius=80, outline="#d9b45a", width=10)
           d.rounded_rectangle([46, 46, S - 47, S - 47], radius=64, outline="#d9b45a", width=3)
 
-          def shape(text):
-              return get_display(arabic_reshaper.reshape(text))
+          size = 420
+          while size > 40:
+              f = ImageFont.truetype(FONT, size)
+              box = d.textbbox((0, 0), LETTER, font=f)
+              w = box[2] - box[0]
+              h = box[3] - box[1]
+              if w <= 330 and h <= 330:
+                  break
+              size -= 6
 
-          def draw_line(text, cy, color, size, max_w=360):
-              t = shape(text)
-              while size > 20:
-                  f = ImageFont.truetype(FONT, size)
-                  box = d.textbbox((0, 0), t, font=f)
-                  if (box[2] - box[0]) <= max_w:
-                      break
-                  size -= 4
-              d.text((S // 2, cy), t, font=f, fill=color, anchor="mm")
-
-          draw_line("قواعد", 195, "#f1dca0", 170)
-          draw_line("العربية", 335, "#ffffff", 170)
+          x = (S - w) // 2 - box[0]
+          y = (S - h) // 2 - box[1]
+          d.text((x, y), LETTER, font=f, fill="#f1dca0")
 
           img.save(OUT)
           img.save("icon-preview.png")
-          print("icon saved")
+          print("icon saved, font size", size)
           PYEOF
           python3 make_icon.py
           test -s android-build/app/src/main/res/drawable-nodpi/ic_launcher.png
