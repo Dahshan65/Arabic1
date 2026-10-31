@@ -22,6 +22,7 @@ jobs:
         run: |
           APP_URL="https://dahshan65.github.io/Rewaq_Alkhatt/"
           mkdir -p android-build/app/src/main/java/com/dahshan/rewaq
+          mkdir -p android-build/app/src/main/res/drawable-nodpi
           cd android-build
 
           cat > settings.gradle <<'EOF'
@@ -79,6 +80,7 @@ jobs:
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
               <uses-permission android:name="android.permission.INTERNET" />
               <application
+                  android:icon="@drawable/ic_launcher"
                   android:label="رواق الفن العربي"
                   android:supportsRtl="true"
                   android:theme="@android:style/Theme.Material.Light.NoActionBar">
@@ -147,6 +149,45 @@ jobs:
               }
           }
           EOF
+
+      - name: Create app icon
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-hosny-amiri
+          pip install --break-system-packages pillow arabic-reshaper python-bidi
+          export FONT_FILE="$(fc-match -f '%{file}' 'Amiri:bold')"
+          echo "Using font: $FONT_FILE"
+          python3 - <<'PY'
+          import os
+          from PIL import Image, ImageDraw, ImageFont
+          import arabic_reshaper
+          from bidi.algorithm import get_display
+
+          S = 512
+          font_file = os.environ["FONT_FILE"]
+          img = Image.new("RGB", (S, S), "#1d6041")
+          d = ImageDraw.Draw(img)
+          d.rounded_rectangle([26, 26, S - 27, S - 27], radius=70, outline="#d9b45a", width=9)
+
+          def fit(text, max_w, start):
+              size = start
+              while size > 20:
+                  f = ImageFont.truetype(font_file, size)
+                  if d.textlength(text, font=f) <= max_w:
+                      return f
+                  size -= 4
+              return ImageFont.truetype(font_file, 20)
+
+          def draw_line(text, y, color, start):
+              shaped = get_display(arabic_reshaper.reshape(text))
+              f = fit(shaped, 380, start)
+              d.text((S // 2, y), shaped, font=f, fill=color, anchor="mm")
+
+          draw_line("قواعد", 190, "#f1dca0", 190)
+          draw_line("العربية", 335, "#ffffff", 190)
+
+          img.save("android-build/app/src/main/res/drawable-nodpi/ic_launcher.png")
+          PY
 
       - name: Build APK
         working-directory: android-build
